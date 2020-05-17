@@ -1,0 +1,37 @@
+package classicPayModel.bll;
+
+import java.util.Hashtable;
+import java.util.List;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import classicPayModel.dao.ProductDao;
+import classicPayModel.entity.Product;
+
+public class ProductManager {
+	
+	//middleware for handling the dao connections 
+	//same as junit tests
+	
+	private ApplicationContext ctx =	new ClassPathXmlApplicationContext("pm-spring-config.xml");
+	private ProductDao productDao = (ProductDao) ctx.getBean("productDao");
+	
+	
+	
+	public List<Product> getProductByAll(){
+		
+		List<Product> pdao = productDao.getAllProducts();
+		
+		return pdao;
+	}
+	
+	
+	public Product getProductByProductCode(int prodCode){
+		
+		Product pdao = productDao.getProductByProductCode(prodCode);
+		
+		return pdao;
+	}
+
+}
