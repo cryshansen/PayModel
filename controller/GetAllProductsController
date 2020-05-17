@@ -1,0 +1,92 @@
+package classicPayModel.controller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.faces.model.DataModel;
+import javax.faces.model.ListDataModel;
+
+import classicPayModel.bll.ProductManager;
+import classicPayModel.entity.Product;
+
+/*
+ * handles the jsp page call to getAllProducts and list out in component
+ * 
+ * */
+
+public class GetAllProductController {
+	
+	private String productLine;
+	private String productCode;
+	private String productName;
+	
+	
+	private DataModel products = new ListDataModel();
+	
+	private ProductManager prodManager  = new ProductManager();
+	
+	
+	//returns string of success to front end and loads front end faces components
+	public String findAllProducts() {
+		String outcome = "success";
+		List<Product> p = new ArrayList<Product>();
+		p = prodManager.getProductByAll();
+		
+		if(p.size()>0) {  products.setWrappedData( p ); }
+		
+		return outcome;
+		
+	}
+
+
+	public String getProductLine() {
+		return productLine;
+	}
+
+
+	public void setProductLine(String productLine) {
+		this.productLine = productLine;
+	}
+
+
+	public String getProductCode() {
+		return productCode;
+	}
+
+
+	public void setProductCode(String productCode) {
+		this.productCode = productCode;
+	}
+
+
+	public String getProductName() {
+		return productName;
+	}
+
+
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+
+
+	public DataModel getProducts() {
+		return products;
+	}
+
+
+	public void setProducts(DataModel products) {
+		this.products = products;
+	}
+
+
+	public ProductManager getProdManager() {
+		return prodManager;
+	}
+
+
+	public void setProdManager(ProductManager prodManager) {
+		this.prodManager = prodManager;
+	}
+	
+
+}
